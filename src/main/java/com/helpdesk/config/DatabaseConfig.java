@@ -41,6 +41,8 @@ public class DatabaseConfig {
 		property.setProperty("hibernate.show_sql", "true");
 		emf.setJpaProperties(property);
 		
+		emf.setEntityManagerFactoryInterface(jakarta.persistence.EntityManagerFactory.class);
+		
 		return emf;
 	}
 	
