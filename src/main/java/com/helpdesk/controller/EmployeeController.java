@@ -10,33 +10,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.helpdesk.entity.Tenant;
-import com.helpdesk.service.TenantService;
+import com.helpdesk.entity.Employee;
+import com.helpdesk.service.EmployeeService;
 
 @RestController
-@RequestMapping("/tenants")
-public class TenantController {
+@RequestMapping("/employees")
+public class EmployeeController {
 
 	@Autowired
-	private TenantService service;
+	private EmployeeService service;
+	
+	@PostMapping
+	public void save(@RequestBody Employee employee)
+	{
+		service.save(employee);
+	}
 	
 	@GetMapping
-	public List<Tenant> findAll()
+	public List<Employee> findAll()
 	{
 		return service.findAll();
 	}
 	
-	@PostMapping
-	public void save(@RequestBody Tenant tenant)
+	@GetMapping("/{id}")
+	public Employee findById(@PathVariable("id") Long id)
 	{
-		service.save(tenant);
+		return service.findById(id);
 	}
 	
-	@GetMapping("/{id}")
-	public Tenant findById(@PathVariable("id") Long id)
+	@GetMapping("/tenant/{tenantId}")
+	public List<Employee> findByTenantId(@PathVariable("tenantId") Long tenantId)
 	{
-		Tenant tenant = service.findById(id);
-		return tenant;
+		return service.findByTenantId(tenantId);
 	}
 	
 }
