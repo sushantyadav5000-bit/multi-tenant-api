@@ -12,7 +12,7 @@ import com.helpdesk.entity.Tenant;
 public class TenantServiceImpl implements TenantService {
 
 	@Autowired
-	TenantDao dao;
+	private TenantDao dao;
 	
 	@Override
 	public void save(Tenant tenant) {
