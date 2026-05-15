@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages = "com.helpdesk.dao")
+@ComponentScan(basePackages = {"com.helpdesk.dao","com.helpdesk.service"})
 public class DatabaseConfig {
 
 	//Connecting To Database
