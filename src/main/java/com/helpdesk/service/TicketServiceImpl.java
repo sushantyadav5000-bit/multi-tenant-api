@@ -39,4 +39,16 @@ public class TicketServiceImpl implements TicketService {
 		return dao.findByEmployeeId(empId);
 	}
 
+	@Override
+	public void update(Ticket ticket) {
+		dao.update(ticket);
+		
+	}
+
+	@Override
+	public void delete(Long id) {
+		dao.delete(id);
+		
+	}
+
 }

@@ -16,4 +16,8 @@ void save(Ticket ticket);
 	
 	List<Ticket> findByEmployeeId(Long employeeId);
 	
+	void update(Ticket ticket);
+	
+	void delete(Long id);
+	
 }

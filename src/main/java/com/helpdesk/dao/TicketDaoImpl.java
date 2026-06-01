@@ -46,5 +46,21 @@ public class TicketDaoImpl implements TicketDao {
 		query.setParameter("empId", empId);
 		return query.getResultList();
 	}
+	
+	@Override
+	@Transactional
+	public void update(Ticket ticket) {
+	    em.merge(ticket);
+	}
+
+	@Override
+	@Transactional
+	public void delete(Long id) {
+	    // To delete an object, Hibernate requires to find it first
+	    Ticket ticket = em.find(Ticket.class, id);
+	    if (ticket != null) {
+	        em.remove(ticket);
+	    }
+	}
 
 }
