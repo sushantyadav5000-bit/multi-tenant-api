@@ -17,4 +17,8 @@ public interface TenantDao {
 	
 	Tenant findById(Long id);
 	
+	void update(Tenant tenant);
+	
+	void delete(Long id);
+	
 }

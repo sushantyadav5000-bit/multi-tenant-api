@@ -31,4 +31,14 @@ public class TenantServiceImpl implements TenantService {
 		return tenant;
 	}
 
+	@Override
+	public void update(Tenant tenant) {
+		dao.update(tenant);
+	}
+
+	@Override
+	public void delete(Long id) {
+		dao.delete(id);
+	}
+
 }

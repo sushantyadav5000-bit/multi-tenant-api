@@ -6,6 +6,7 @@ import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import com.helpdesk.entity.Tenant;
+import com.helpdesk.entity.Ticket;
 
 // 1. Tells Spring: "Manage this class, and translate any raw SQL errors into clean Java errors."
 @Repository 
@@ -33,4 +34,19 @@ public class TenantDaoImpl implements TenantDao {
     public Tenant findById(Long id) {
         return em.find(Tenant.class, id);
     }
+
+	@Override
+	@Transactional
+	public void update(Tenant tenant) {
+		em.merge(tenant);
+	}
+
+	@Override
+	@Transactional
+	public void delete(Long id) {
+		Tenant tenant = em.find(Tenant.class, id);
+	    if (tenant != null) {
+	        em.remove(tenant);
+	    }
+	}
 }

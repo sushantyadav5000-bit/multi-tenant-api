@@ -40,4 +40,19 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return query.getResultList();
 	}
 
+	@Override
+	@Transactional
+	public void update(Employee employee) {
+		em.merge(employee);
+	}
+
+	@Override
+	public void delete(Long id) {
+		Employee employee = em.find(Employee.class, id);
+		if(employee != null)
+		{
+			em.remove(employee);
+		}
+	}
+
 }

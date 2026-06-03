@@ -12,4 +12,8 @@ public interface TenantService {
 	
 	Tenant findById(Long id);
 	
+	void update(Tenant tenant);
+	
+	void delete(Long id);
+	
 }

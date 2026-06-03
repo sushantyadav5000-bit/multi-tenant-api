@@ -33,6 +33,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<Employee> findByTenantId(Long tenantId) {
 		return dao.findByTenantId(tenantId);
 	}
+
+	@Override
+	public void update(Employee employee) {
+		dao.update(employee);
+	}
+
+	@Override
+	public void delete(Long id) {
+		dao.delete(id);
+	}
 	
 	
 	
