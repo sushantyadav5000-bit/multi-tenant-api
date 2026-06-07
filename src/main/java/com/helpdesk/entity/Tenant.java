@@ -36,7 +36,7 @@ public class Tenant {
 	@Column(name = "subscription_status")
 	private String subscriptionStatus = "TRIAL";
 	
-	@OneToMany(mappedBy = "tenant", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "tenant", cascade = CascadeType.ALL) //cascade will remove this employee automatically when the Tenant is deleted 
 	@JsonIgnore
     private List<Employee> employees;
 	
