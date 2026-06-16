@@ -63,4 +63,16 @@ public class TicketDaoImpl implements TicketDao {
 	    }
 	}
 
+	@Override
+	public List<Ticket> findAllPaginated(int page, int size) {
+		// If page is 0 and size is 10, offset = 0 (Skip nothing, get first 10)
+	    // If page is 1 and size is 10, offset = 10 (Skip first 10, get next 10)
+	    int offset = page * size;
+	    
+	    return em.createQuery("FROM Ticket", Ticket.class)
+	            .setFirstResult(offset)  // This is SQL OFFSET
+	            .setMaxResults(size)     // This is SQL LIMIT
+	            .getResultList();
+	}
+
 }

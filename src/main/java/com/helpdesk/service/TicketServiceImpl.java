@@ -86,4 +86,9 @@ public class TicketServiceImpl implements TicketService {
 		
 	}
 
+	@Override
+	public List<Ticket> findAllPaginated(int page, int size) {
+		return dao.findAllPaginated(page, size);
+	}
+
 }

@@ -20,4 +20,6 @@ public interface TicketDao {
 	
 	void delete(Long id);
 	
+	List<Ticket> findAllPaginated(int page, int size);
+	
 }
