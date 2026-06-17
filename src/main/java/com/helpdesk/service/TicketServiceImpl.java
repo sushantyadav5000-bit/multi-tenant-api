@@ -1,5 +1,6 @@
 package com.helpdesk.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.helpdesk.dao.EmployeeDao;
 import com.helpdesk.dao.TicketDao;
+import com.helpdesk.dto.TicketDto;
 import com.helpdesk.entity.Employee;
 import com.helpdesk.entity.Ticket;
 
@@ -87,8 +89,39 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public List<Ticket> findAllPaginated(int page, int size) {
-		return dao.findAllPaginated(page, size);
+	public List<TicketDto> findAllPaginated(int page, int size) {
+	    // 1. Get the heavy data from the DAO
+	    List<Ticket> rawTickets = dao.findAllPaginated(page, size);
+	    
+	    // 2. Create an empty list for our clean DTOs
+	    List<TicketDto> cleanTickets = new ArrayList<>();
+	    
+	    // 3. Translate each ticket
+	    for (Ticket ticket : rawTickets) {
+	        cleanTickets.add(convertToDto(ticket));
+	    }
+	    
+	    // 4. Return the clean list!
+	    return cleanTickets;
+	}
+	
+	private TicketDto convertToDto(Ticket ticket) {
+	    TicketDto dto = new TicketDto();
+	    dto.setId(ticket.getId());
+	    dto.setTitle(ticket.getTitle());
+	    dto.setStatus(ticket.getStatus());
+	    
+	    // Flatten the Tenant object into a simple string
+	    dto.setCompanyName(ticket.getTenant().getCompanyName());
+	    
+	    // Flatten the Employee object into a simple string (with a null check!)
+	    if (ticket.getAssignedTo() != null) {
+	        dto.setAssignedWorker(ticket.getAssignedTo().getFirstName() + " " + ticket.getAssignedTo().getLastName());
+	    } else {
+	        dto.setAssignedWorker("Unassigned");
+	    }
+	    
+	    return dto;
 	}
 
 }
