@@ -9,13 +9,13 @@ public interface TicketService {
 
 void save(Ticket ticket);
 	
-	List<Ticket> findAll();
+	List<TicketDto> findAll();
 	
-	Ticket findById(Long id);
+	TicketDto findById(Long id);
 	
-	List<Ticket> findByTenantId(Long tenantId);
+	List<TicketDto> findByTenantId(Long tenantId);
 	
-	List<Ticket> findByEmployeeId(Long employeeId);
+	List<TicketDto> findByEmployeeId(Long employeeId);
 	
 	void update(Ticket ticket);
 	

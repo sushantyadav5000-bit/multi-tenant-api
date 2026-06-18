@@ -45,23 +45,48 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public List<Ticket> findAll() {
-		return dao.findAll();
+	public List<TicketDto> findAll() {
+		List<Ticket> rawTickets = dao.findAll();
+		List<TicketDto> cleanTickets = new ArrayList<>();
+		for(Ticket ticket : rawTickets)
+		{
+			cleanTickets.add(convertToDto(ticket));
+		}
+		
+		return cleanTickets;
 	}
 
 	@Override
-	public Ticket findById(Long id) {
-		return dao.findById(id);
+	public TicketDto findById(Long id) {
+		Ticket ticket = dao.findById(id);
+		return convertToDto(ticket);
 	}
 
 	@Override
-	public List<Ticket> findByTenantId(Long tenantId) {
-		return dao.findByTenantId(tenantId);
+	public List<TicketDto> findByTenantId(Long tenantId) {
+		List<Ticket> rawTickets = dao.findByTenantId(tenantId);
+		List<TicketDto> cleanTickets = new ArrayList<>();
+		
+		for(Ticket ticket : rawTickets)
+		{
+			cleanTickets.add(convertToDto(ticket));
+		}
+		
+		return cleanTickets;
 	}
 
 	@Override
-	public List<Ticket> findByEmployeeId(Long empId) {
-		return dao.findByEmployeeId(empId);
+	public List<TicketDto> findByEmployeeId(Long empId) {
+		List<Ticket> rawTickets = dao.findByEmployeeId(empId);
+		List<TicketDto> cleanTickets = new ArrayList<>();
+		
+		for(Ticket ticket : rawTickets)
+		{
+			cleanTickets.add(convertToDto(ticket));
+		}
+		
+		return cleanTickets;
+		
 	}
 
 	@Override

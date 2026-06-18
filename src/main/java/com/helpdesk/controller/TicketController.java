@@ -31,25 +31,25 @@ public class TicketController {
 	}
 	
 	@GetMapping
-	public List<Ticket> findAll()
+	public List<TicketDto> findAll()
 	{
 		return service.findAll();
 	}
 	
 	@GetMapping("/{id}")
-	public Ticket findById(@PathVariable("id") Long id)
+	public TicketDto findById(@PathVariable("id") Long id)
 	{
 		return service.findById(id);
 	}
 	
 	@GetMapping("/tenant/{tenantId}")
-	public List<Ticket> findByTenantId(@PathVariable("tenantId") Long id)
+	public List<TicketDto> findByTenantId(@PathVariable("tenantId") Long id)
 	{
 		return service.findByTenantId(id);
 	}
 	
 	@GetMapping("/employee/{empId}")
-	public List<Ticket> findByEmployeeId(@PathVariable("empId") Long id)
+	public List<TicketDto> findByEmployeeId(@PathVariable("empId") Long id)
 	{
 		return service.findByEmployeeId(id);
 	}
